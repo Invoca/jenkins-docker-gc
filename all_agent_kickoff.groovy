@@ -1,4 +1,4 @@
-// The script triggers 'spotify-docker-gc' on every node.
+// The script triggers 'docker-gc' on every node.
 // It uses Node and Label Parameter plugin to pass the job name to the payload job.
 // The code will require approval of several Jenkins classes in the Script Security mode
 def branches = [:]
@@ -10,7 +10,7 @@ for (int i=0; i<names.size(); ++i) {
   branches["node_" + nodeName] = {
     node(nodeName) {
       echo "Triggering on " + nodeName
-      build job: 'spotify-docker-gc', parameters: [
+      build job: 'docker-gc', parameters: [
         new org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterValue("TARGET_NODE", "description", nodeName)
       ]
     }
